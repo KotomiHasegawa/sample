@@ -1,18 +1,62 @@
 <!DOCTYPE html>
-<html lang="" ja>
+  <html lang="" ja>
+  <head>
+    <meta charset="UTF-8">
+    <title>地震速報</title>
+    <script src="Earthquake.js"></script>
+    <link href="main.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>地震速報</p>
 
-<head>
-  <meta charset="UTF-8">
-  <title>＊地震速報＊</title>
-  <script src="Earthquake.js"></script>
-  <!-- <link href="main.css" rel="stylesheet"> -->
-</head>
-
-<body>
-<h1>地震速報</h1>
-<input type="checkBox" id="mark" onclick="boxCheck()"/>地震あり
-<p id="Earthquake">現在、地震はありません</p>
-<button id="cancelBtn" onclick="change()" style="display:none">クリア</button>
-</body>
-
+    <table>
+      <tr>
+        <th></th>
+        <th class="timeClm">発生時刻</th>
+        <th class="nameClm">震源地</th>
+        <th class="multiClm">最大震度</th>
+        <th class="multiClm">マグニチュード</th>
+      </tr>
+      <!--1件目-->
+      <tr>
+        <td><div id="new1" class="new"></div></td>
+        <td><div id="time1"></div></td>
+        <td><div id="name1"></div></td>
+        <td><div id="scale1"></div></td>
+        <td><div id="magn1"></div></td>
+      </tr>
+      <!--2件目-->
+      <tr>
+        <td><div id="new2" class="new"></div></td>
+        <td><div id="time2"></div></td>
+        <td><div id="name2"></div></td>
+        <td><div id="scale2"></div></td>
+        <td><div id="magn2"></div></td>
+      </tr>
+      <!--3件目-->
+      <tr>
+        <td><div id="new3" class="new"></div></td>
+        <td><div id="time3"></div></td>
+        <td><div id="name3"></div></td>
+        <td><div id="scale3"></div></td>
+        <td><div id="magn3"></div></td>
+      </tr>
+      <!--4件目-->
+      <tr>
+        <td><div id="new4" class="new"></div></td>
+        <td><div id="time4"></div></td>
+        <td><div id="name4"></div></td>
+        <td><div id="scale4"></div></td>
+        <td><div id="magn4"></div></td>
+      </tr>
+      <!--5件目-->
+      <tr>
+        <td><div id="new5" class="new"></div></td>
+        <td><div id="time5"></div></td>
+        <td><div id="name5"></div></td>
+        <td><div id="scale5"></div></td>
+        <td><div id="magn5"></div></td>
+      </tr>
+    </table>
+  </body>
 </html>

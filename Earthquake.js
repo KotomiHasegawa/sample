@@ -1,10 +1,82 @@
-function boxCheck(){
-  document.getElementById("Earthquake").innerText="～～で震度〇の地震がありました（時間）";
-  document.getElementById("cancelBtn").style.display="";
-}
+window.onload = function () {
+    var apiHttps;
+    apiHttps = new XMLHttpRequest();
+    apiHttps.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
+    apiHttps.send(null);
+    var log = apiHttps.responseText;
 
-function change(){
-  document.getElementById("Earthquake").innerText="現在地震はありません";
-  document.getElementById("cancelBtn").style.display="none";
-  document.getElementById("mark").checked=false;
-}
+    function loadEarthquake () {
+        try{
+            var apiHttp;
+            apiHttp = new XMLHttpRequest();
+            apiHttp.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
+            apiHttp.send(null);
+            var jsonData=apiHttp.responseText;
+        }catch(e){};
+        var Rjson=JSON.parse(apiHttp.responseText);
+
+        var i = 0;
+        var cnt = 1;
+        // 5件表示されるまでループ
+        do{
+            var idNew = "new"+cnt;
+            var idTime = "time"+cnt;
+            var idName = "name"+cnt;
+            var idScale = "scale"+cnt;
+            var idMagn = "magn"+cnt;
+
+            // 発生時刻をyyyyMMddHHmmssSSS形式に変換
+            var time_str = Rjson[i].time.replace("/", "").replace("/", "").replace(/ /g, "").replace(":", "").replace(":", "").replace(".", "");
+
+            // 現在の10分前の時刻をyyyyMMddHHmmssSSS形式で取得
+            var now = new Date();
+            var before10min = now.getFullYear() + ("0"+(now.getMonth()+1)).slice(-2) + ("0"+now.getDate()).slice(-2) + ("0"+now.getHours()).slice(-2) + ("0"+now.getMinutes()).slice(-2) + ("0"+now.getSeconds()).slice(-2) + ("00"+now.getMilliseconds()).slice(-3)-1000000;
+
+            // 発生時刻を年月日時分に変換
+            var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
+
+            // code=511（地震情報）の場合データ取得
+            if(Rjson[i].code==551){
+                // 発生時刻が現在時刻の10分前以内の場合！表示
+                if(time_str>=before10min){
+                    document.getElementById(idNew).innerHTML = "New"
+                }
+                document.getElementById(idTime).innerHTML = timeChange
+                document.getElementById(idName).innerHTML = Rjson[i].earthquake.hypocenter.name
+                // 最大震度の表示形式変換
+                if(Rjson[i].earthquake.maxScale==10){
+                    document.getElementById(idScale).innerHTML="1"
+                }else if(Rjson[i].earthquake.maxScale==20){
+                    document.getElementById(idScale).innerHTML="2"
+                }else if(Rjson[i].earthquake.maxScale==30){
+                    document.getElementById(idScale).innerHTML="3"
+                }else if(Rjson[i].earthquake.maxScale==40){
+                    document.getElementById(idScale).innerHTML="4"
+                }else if(Rjson[i].earthquake.maxScale==45){
+                    document.getElementById(idScale).innerHTML="5弱"
+                }else if(Rjson[i].earthquake.maxScale==50){
+                    document.getElementById(idScale).innerHTML="5強"
+                }else if(Rjson[i].earthquake.maxScale==55){
+                    document.getElementById(idScale).innerHTML="6弱"
+                }else if(Rjson[i].earthquake.maxScale==60){
+                    document.getElementById(idScale).innerHTML="6強"
+                }else if(Rjson[i].earthquake.maxScale==70){
+                    document.getElementById(idScale).innerHTML="7"
+                }
+                document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
+                cnt += 1;
+            };
+            i += 1;
+        }while(cnt<=5);
+        log = apiHttp.responseText;
+    };
+
+    // 初回ロード時の呼び出し
+    loadEarthquake();
+
+    // 1分ごとにリロード
+    setInterval(function(){
+        loadEarthquake();
+    },60000) 
+
+};
