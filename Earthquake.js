@@ -1,9 +1,4 @@
 window.onload = function () {
-    var apiHttps;
-    apiHttps = new XMLHttpRequest();
-    apiHttps.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
-    apiHttps.send(null);
-    var log = apiHttps.responseText;
 
     function loadEarthquake () {
         try{
@@ -11,7 +6,7 @@ window.onload = function () {
             apiHttp = new XMLHttpRequest();
             apiHttp.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
             apiHttp.send(null);
-            var jsonData=apiHttp.responseText;
+            // var jsonData=apiHttp.responseText;
         }catch(e){};
         var Rjson=JSON.parse(apiHttp.responseText);
 
