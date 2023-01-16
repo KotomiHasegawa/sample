@@ -30,8 +30,10 @@ window.onload = function () {
             // 発生時刻を年月日時分に変換
             var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
 
-            // code=511（地震情報）の場合データ取得
-            if(Rjson[i].code==551){
+
+
+            // code=511（地震情報）で、震源地と最大震度が空でない地震データを取得
+            if(Rjson[i].code==551 && Rjson[i].earthquake.hypocenter.name !=="" && Rjson[i].earthquake.maxScale!==null){
                 // 発生時刻が現在時刻の10分前以内の場合！表示
                 if(time_str>=before10min){
                     document.getElementById(idNew).innerHTML = "New"
@@ -58,7 +60,15 @@ window.onload = function () {
                 }else if(Rjson[i].earthquake.maxScale==70){
                     document.getElementById(idScale).innerHTML="7"
                 }
-                document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
+                // document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
+                // マグニチュードの値が空の場合「―」と出力
+
+                if(Rjson[i].earthquake.hypocenter.magnitude==""){
+                    document.getElementById(idMagn).innerHTML="―"
+                }else{
+                    document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
+                }
+
                 cnt += 1;
             };
             i += 1;
