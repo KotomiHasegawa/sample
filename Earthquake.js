@@ -6,7 +6,6 @@ window.onload = function () {
             apiHttp = new XMLHttpRequest();
             apiHttp.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
             apiHttp.send(null);
-            // var jsonData=apiHttp.responseText;
         }catch(e){};
         var Rjson=JSON.parse(apiHttp.responseText);
 
@@ -26,6 +25,7 @@ window.onload = function () {
             // 現在の10分前の時刻をyyyyMMddHHmmssSSS形式で取得
             var now = new Date();
             var before10min = now.getFullYear() + ("0"+(now.getMonth()+1)).slice(-2) + ("0"+now.getDate()).slice(-2) + ("0"+now.getHours()).slice(-2) + ("0"+now.getMinutes()).slice(-2) + ("0"+now.getSeconds()).slice(-2) + ("00"+now.getMilliseconds()).slice(-3)-1000000;
+
 
             // 発生時刻を年月日時分に変換
             var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
@@ -63,7 +63,6 @@ window.onload = function () {
             };
             i += 1;
         }while(cnt<=5);
-        log = apiHttp.responseText;
     };
 
     // 初回ロード時の呼び出し
