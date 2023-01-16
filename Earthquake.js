@@ -26,10 +26,8 @@ window.onload = function () {
             var now = new Date();
             var before10min = now.getFullYear() + ("0"+(now.getMonth()+1)).slice(-2) + ("0"+now.getDate()).slice(-2) + ("0"+now.getHours()).slice(-2) + ("0"+now.getMinutes()).slice(-2) + ("0"+now.getSeconds()).slice(-2) + ("00"+now.getMilliseconds()).slice(-3)-1000000;
 
-
             // 発生時刻を年月日時分に変換
             var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
-
 
 
             // code=511（地震情報）で、震源地と最大震度が空でない地震データを取得
@@ -60,15 +58,12 @@ window.onload = function () {
                 }else if(Rjson[i].earthquake.maxScale==70){
                     document.getElementById(idScale).innerHTML="7"
                 }
-                // document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
-                // マグニチュードの値が空の場合「―」と出力
-
+                // マグニチュードの値が空の場合「―」と表示
                 if(Rjson[i].earthquake.hypocenter.magnitude==""){
                     document.getElementById(idMagn).innerHTML="―"
                 }else{
                     document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
                 }
-
                 cnt += 1;
             };
             i += 1;
