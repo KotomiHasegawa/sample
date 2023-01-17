@@ -1,5 +1,5 @@
 window.onload = function () {
-
+    
     function loadEarthquake () {
         try{
             var apiHttp;
@@ -35,6 +35,8 @@ window.onload = function () {
                 // 発生時刻が現在時刻の10分前以内の場合！表示
                 if(time_str>=before10min){
                     document.getElementById(idNew).innerHTML = "New"
+                }else{
+                    document.getElementById(idNew).innerHTML = ""
                 }
                 document.getElementById(idTime).innerHTML = timeChange
                 document.getElementById(idName).innerHTML = Rjson[i].earthquake.hypocenter.name
