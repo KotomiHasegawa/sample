@@ -4,17 +4,27 @@ body{
 }
 
 .top{
+  color: darkblue;
   font-size: 30px;
   font-weight: bold;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0px 5px;
+.now{
+  font-weight: bold;
 }
 
+table {
+  border-collapse: collapse;
+}
+table th, table td {
+  border: solid 1px gray;
+}
+
+
+
 table th{
-  color:#0099FF;
+  color:darkblue;
+  background-color:linen;
   font-size: 20px;
   text-align: center;
   height: 50px;
@@ -22,6 +32,7 @@ table th{
 
 table td{
   text-align: center;
+  line-height: 3;
 }
 
 .timeClm{
@@ -36,4 +47,8 @@ table td{
   color: red;
   text-align: right;
   font-weight: bolder;
+  /* border: gray solid 1px; */
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
 }

@@ -28,11 +28,11 @@ window.onload = function () {
 
             // 現在時刻を年月日時分に変換
             var y = now.getFullYear();
-            var m = now.getMonth()+1;
-            var d = now.getDate();
+            var m = ("0"+(now.getMonth()+1)).slice(-2)
+            var d =("0"+now.getDate()).slice(-2)
             var H = now.getHours();
             var M = now.getMinutes();
-            document.getElementById("nowTime").innerHTML = "現在時刻　"+y+"年"+m+"月"+d+"日"+H+"時"+M+"日"
+            document.getElementById("nowTime").innerHTML = y+"年"+m+"月"+d+"日"+H+"時"+M+"分"
 
 
             // 発生時刻を年月日時分に変換
