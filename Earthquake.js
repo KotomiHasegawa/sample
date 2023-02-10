@@ -6,7 +6,9 @@ window.onload = function () {
             apiHttp = new XMLHttpRequest();
             apiHttp.open("GET", "https://api.p2pquake.net/v1/human-readable", false);
             apiHttp.send(null);
-        }catch(e){};
+        }catch(e){
+            
+        };
         var Rjson=JSON.parse(apiHttp.responseText);
 
         var i = 0;

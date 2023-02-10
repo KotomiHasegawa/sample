@@ -3,7 +3,7 @@ body{
   width: 85%;
 }
 
-.top{
+h1{
   color: darkblue;
   font-size: 30px;
   font-weight: bold;
@@ -16,11 +16,10 @@ body{
 table {
   border-collapse: collapse;
 }
+
 table th, table td {
   border: solid 1px gray;
 }
-
-
 
 table th{
   color:darkblue;
@@ -47,7 +46,6 @@ table td{
   color: red;
   text-align: right;
   font-weight: bolder;
-  /* border: gray solid 1px; */
   border-left: none;
   border-top: none;
   border-bottom: none;
