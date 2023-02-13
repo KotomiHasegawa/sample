@@ -23,7 +23,6 @@ table th, table td {
 
 table th{
   color:darkblue;
-  background-color:linen;
   font-size: 20px;
   text-align: center;
   height: 50px;
@@ -36,10 +35,12 @@ table td{
 
 .timeClm{
   width: 300px;
+  background-color:linen;
 }
 
 .multiClm{
   width: 200px;
+  background-color:linen;
 }
 
 .new{
