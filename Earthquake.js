@@ -42,7 +42,7 @@ window.onload = function () {
 
 
             // code=511（地震情報）で、震源地と最大震度が空でない地震データを取得
-            if(Rjson[i].code==551 && Rjson[i].earthquake.hypocenter.name !=="" && Rjson[i].earthquake.maxScale!==null){
+            if(Rjson[i].code==551 && Rjson[i].earthquake.hypocenter.name !=="" && Rjson[i].earthquake.maxScale!==null && Rjson[i].earthquake.hypocenter.name.indexOf('?')=="-1"){
                 // 発生時刻が現在時刻の10分前以内の場合！表示
                 if(time_str>=before10min){
                     document.getElementById(idNew).innerHTML = "New"
