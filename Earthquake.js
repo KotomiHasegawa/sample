@@ -11,31 +11,31 @@ window.onload = function () {
         };
         var Rjson=JSON.parse(apiHttp.responseText);
 
-        var i = 0;  // APIから情報をとるカウント
-        var count = 1;  // 5件表示するカウント
+        var i = 0;  //APIから情報をとるカウント
+        var count = 1;  //5件表示するカウント
 
         // 5件表示されるまでループ
         do{
-            var idNew = "new"+count;
-            var idTime = "time"+count;
-            var idName = "name"+count;
-            var idScale = "scale"+count;
-            var idMagn = "magn"+count;
+            var idNew = "new"+count;     //10分以内の情報に表示する「New」
+            var idTime = "time"+count;   //「発生時刻」に表示
+            var idName = "name"+count;   //「震源地」に表示
+            var idScale = "scale"+count; //「震度」に表示
+            var idMagn = "magn"+count;   //「マグニチュード」に表示
 
-            // 地震発生時刻をyyyyMMddHHmmssSSS形式に変換
+            // 地震発生時刻をyyyymmddHHMMssSSS形式に変換
             var time_str = Rjson[i].time.replace("/", "").replace("/", "").replace(/ /g, "").replace(":", "").replace(":", "").replace(".", "");
 
-            // 現在の10分前の時刻をyyyyMMddHHmmssSSS形式で取得
+            // 現在の10分前の時刻をyyyymmddHHMMssSSS形式で取得
             var now = new Date();
             var before10min = now.getFullYear() + ("0"+(now.getMonth()+1)).slice(-2) + ("0"+now.getDate()).slice(-2) + ("0"+now.getHours()).slice(-2) + ("0"+now.getMinutes()).slice(-2) + ("0"+now.getSeconds()).slice(-2) + ("00"+now.getMilliseconds()).slice(-3)-1000000;
 
             // 現在時刻を年月日時分に変換
-            var y = now.getFullYear();
-            var m = ("0"+(now.getMonth()+1)).slice(-2);
-            var d =("0"+now.getDate()).slice(-2);
-            var H = now.getHours();
-            var M = ("0"+now.getMinutes()).slice(-2);
-            document.getElementById("nowTime").innerHTML = y+"年"+m+"月"+d+"日"+H+"時"+M+"分"
+            var yyyy = now.getFullYear();
+            var mm = ("0"+(now.getMonth()+1)).slice(-2);
+            var dd =("0"+now.getDate()).slice(-2);
+            var HH = now.getHours();
+            var MM = ("0"+now.getMinutes()).slice(-2);
+            document.getElementById("nowTime").innerHTML = yyyy+"年"+mm+"月"+dd+"日"+HH+"時"+MM+"分"
 
             // 地震発生時刻を年月日時分に変換
             var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
