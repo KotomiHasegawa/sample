@@ -11,17 +11,18 @@ window.onload = function () {
         };
         var Rjson=JSON.parse(apiHttp.responseText);
 
-        var i = 0;
-        var cnt = 1;
+        var i = 0;  // APIから情報をとるカウント
+        var count = 1;  // 5件表示するカウント
+
         // 5件表示されるまでループ
         do{
-            var idNew = "new"+cnt;
-            var idTime = "time"+cnt;
-            var idName = "name"+cnt;
-            var idScale = "scale"+cnt;
-            var idMagn = "magn"+cnt;
+            var idNew = "new"+count;
+            var idTime = "time"+count;
+            var idName = "name"+count;
+            var idScale = "scale"+count;
+            var idMagn = "magn"+count;
 
-            // 発生時刻をyyyyMMddHHmmssSSS形式に変換
+            // 地震発生時刻をyyyyMMddHHmmssSSS形式に変換
             var time_str = Rjson[i].time.replace("/", "").replace("/", "").replace(/ /g, "").replace(":", "").replace(":", "").replace(".", "");
 
             // 現在の10分前の時刻をyyyyMMddHHmmssSSS形式で取得
@@ -30,20 +31,18 @@ window.onload = function () {
 
             // 現在時刻を年月日時分に変換
             var y = now.getFullYear();
-            var m = ("0"+(now.getMonth()+1)).slice(-2)
-            var d =("0"+now.getDate()).slice(-2)
+            var m = ("0"+(now.getMonth()+1)).slice(-2);
+            var d =("0"+now.getDate()).slice(-2);
             var H = now.getHours();
-            var M = now.getMinutes();
+            var M = ("0"+now.getMinutes()).slice(-2);
             document.getElementById("nowTime").innerHTML = y+"年"+m+"月"+d+"日"+H+"時"+M+"分"
 
-
-            // 発生時刻を年月日時分に変換
+            // 地震発生時刻を年月日時分に変換
             var timeChange = Rjson[i].time.replace("/", "年").replace("/", "月").replace(/ /g, "日").replace(":", "時").replace(":", "分").slice(0,17);
 
-
-            // code=511（地震情報）で、震源地と最大震度が空でない地震データを取得
+            // code=511（地震情報）で、震源地と最大震度が空や？でないデータを取得
             if(Rjson[i].code==551 && Rjson[i].earthquake.hypocenter.name !=="" && Rjson[i].earthquake.maxScale!==null && Rjson[i].earthquake.hypocenter.name.indexOf('?')=="-1"){
-                // 発生時刻が現在時刻の10分前以内の場合！表示
+                // 地震発生時刻が現在時刻の10分前以内の場合Newを表示
                 if(time_str>=before10min){
                     document.getElementById(idNew).innerHTML = "New"
                 }else{
@@ -77,10 +76,10 @@ window.onload = function () {
                 }else{
                     document.getElementById(idMagn).innerHTML = Rjson[i].earthquake.hypocenter.magnitude
                 }
-                cnt += 1;
+                count += 1;
             };
             i += 1;
-        }while(cnt<=5);
+        }while(count<=5);
     };
 
     // 初回ロード時の呼び出し
