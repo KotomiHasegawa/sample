@@ -16,7 +16,7 @@ window.onload = function () {
 
         // 5件表示されるまでループ
         do{
-            var idNew = "new"+count;     //10分以内の情報に表示する「New」
+            var idNew = "new"+count;     //10分以内の情報に「New」表示
             var idTime = "time"+count;   //「発生時刻」に表示
             var idName = "name"+count;   //「震源地」に表示
             var idScale = "scale"+count; //「震度」に表示
